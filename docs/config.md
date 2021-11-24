@@ -99,6 +99,7 @@ config file at runtime.
     - [`Swarm.AddrFilters`](#swarmaddrfilters)
     - [`Swarm.DisableBandwidthMetrics`](#swarmdisablebandwidthmetrics)
     - [`Swarm.DisableNatPortMap`](#swarmdisablenatportmap)
+    - [`Swarm.EnableHolePunching`](#swarmenableholepunching)
     - [`Swarm.DisableRelay`](#swarmdisablerelay)
     - [`Swarm.EnableRelayHop`](#swarmenablerelayhop)
     - [`Swarm.EnableAutoRelay`](#swarmenableautorelay)
@@ -1267,6 +1268,21 @@ go-ipfs node accessible from the public internet.
 Default: `false`
 
 Type: `bool`
+
+### `Swarm.EnableHolePunching`
+
+Enable hole punching for NAT traversal
+when port forwarding is not possible.
+
+When enabled, go-ipfs will coordinate with the counterparty using
+a [relayed connection](https://github.com/libp2p/specs/blob/master/relay/circuit-v2.md),
+to [upgrade to a direct connection](https://github.com/libp2p/specs/blob/master/relay/DCUtR.md)
+through a NAT/firewall whenever possible.
+For good results, use with `RelayClient.Enabled` set to `true`.
+
+Default: `false`
+
+Type: `flag`
 
 ### `Swarm.DisableRelay`
 
