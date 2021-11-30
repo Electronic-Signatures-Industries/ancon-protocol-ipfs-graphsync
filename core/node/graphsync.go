@@ -3,7 +3,6 @@ package node
 import (
 	"bytes"
 	"context"
-	"errors"
 	"fmt"
 	"io"
 
@@ -57,7 +56,6 @@ func Graphsync(lc fx.Lifecycle, mctx helpers.MetricsCtx, host libp2p.Host, bs bl
 
 		has, _ := bs.Has(requestData.Root())
 		if !has {
-			hookActions.TerminateWithError(errors.New("not found"))
 			FetchBlock(ctx, exchange, p, cidlink.Link{Cid: requestData.Root()})
 		}
 		hookActions.UseLinkTargetNodePrototypeChooser(basicnode.Chooser)
